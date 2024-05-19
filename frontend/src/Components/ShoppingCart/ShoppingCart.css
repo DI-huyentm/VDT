@@ -1,0 +1,117 @@
+.shopping-cart {
+  box-sizing: border-box;
+  position: fixed;
+  width: 900px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  background-color: white;
+  z-index: 2; /* Adjust z-index to ensure it appears above other content */
+  overflow: auto;
+  display: flex;
+  flex-direction: column; 
+}
+
+/* Additional styles for elements inside the shopping cart */
+.shopping-cart h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.shopping-cart p {
+  font-size: 1.2em;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.shopping-cart div {
+  margin-bottom: 10px;
+  padding: 10px;
+
+}
+.shopping-cart .product {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+
+}
+.shopping-cart button {
+  padding: 5px 10px;
+  background-color:rgb(234, 157, 14);
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+/* Styles for individual items in the shopping cart */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  overflow: auto;
+}
+
+.cart-item-details {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.cart-item-info p {
+  margin: 0;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-actions input[type='number'] {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.cart-item-actions button {
+  padding: 5px 10px;
+  background-color: #ffcc00;
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+.total-price {
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: right;
+}
+
+.total-price span {
+  color: rgb(234, 157, 14); /* Change the color to your preference */
+}
+.cart-footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.close-btn, .checkout {
+  margin-right: 10px;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgb(234, 157, 14);
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+
+}
+

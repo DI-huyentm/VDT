@@ -1,0 +1,32 @@
+.user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 10px;
+    font-size: 26px;
+    flex-direction: column;
+}
+.user-info input {
+    font-size: 20px;
+}
+.user-info img{
+    height: 200px;
+    width: 200px;
+}  
+.user-information {
+    display: flex;
+    flex-direction: column;
+}
+.user-information input {
+    height: 30px;
+
+}
+.update-button {
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    background-color: rgb(234, 157, 14);
+    border: none;
+    cursor: pointer;
+}

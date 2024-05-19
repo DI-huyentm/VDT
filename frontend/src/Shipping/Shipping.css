@@ -1,0 +1,91 @@
+.title {
+  font-size: 40px;
+}
+.shipping-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  box-sizing: border-box;
+}
+
+.contact-information form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Additional styling for form elements */
+.contact-information label,
+.contact-information input,
+.contact-information textarea {
+  margin-bottom: 10px;
+}
+.shipping-information {
+  font-size: 26px;
+}
+#fullName,
+#address,
+#phoneNumber {
+  width: 400px; 
+  padding: 8px;
+  height: 30px; 
+  margin-bottom: 10px;
+}
+
+/* Style the textarea */
+#address {
+  height: 80px; 
+}
+.order-button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(234, 157, 14);
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.contact-information,
+.order-summary {
+  margin: 20px; 
+}
+/* Additional styling for each section */
+.contact-information,
+.order-summary {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+.order-summary {
+  max-width: 400px; 
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; 
+}
+
+.order-item-image {
+  width: 80px; 
+  margin-right: 15px; 
+}
+
+.order-item-details {
+  flex: 1; 
+}
+.total-quantity, .total-price {
+  float: right
+}
+
+/* Media query for responsiveness (adjust breakpoints as needed) */
+@media (max-width: 768px) {
+  .shipping-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-information,
+  .order-summary {
+    width: 100%;
+    max-width: none;
+  }
+}
