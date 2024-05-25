@@ -3,6 +3,10 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const app = express();
 require("./models/index");
+// const userRouter = require("./routes/userRoutes");
+const bookRouter = require("./routes/bookRoutes");
+// const genreRouter = require("./routes/genreRoutes");
+// const saleRouter = require("./routes/saleRoutes");
 
 const studentRouter = require("./routes/studentRoutes");
 
@@ -20,10 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
 
 // Declare all routes using in app
+// app.use("/users", userRouter);
+// app.use("/books", bookRouter);
+// app.use("/genres", genreRouter);
+// app.use("/sales", saleRouter);
+
 app.use("/students", studentRouter);
-
-
-
 
 app.all("*", (req, res, next) => {
   res.status(404).json({
