@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 const lightGray = '#f2f2f2';
 const gray = '#cccccc';
@@ -39,28 +41,28 @@ function StudentsPage() {
         </Button>
       </div>
       <Table style={{ border: `1px solid ${gray}` }}>
-        <TableHead>
-          <TableRow style={{ backgroundColor: green, color: white, fontWeight: 'bold' }}>
-            <TableCell>Student Name</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>School</TableCell>
-            <TableCell>Actions</TableCell>
+        <TableHead style={{ backgroundColor: green, color: white }}>
+          <TableRow>
+            <TableCell style={{ border: `1px solid ${gray}`, fontWeight: 'bold' }}>Student Name</TableCell>
+            <TableCell style={{ border: `1px solid ${gray}`, fontWeight: 'bold' }}>Gender</TableCell>
+            <TableCell style={{ border: `1px solid ${gray}`, fontWeight: 'bold' }}>School</TableCell>
+            <TableCell style={{ border: `1px solid ${gray}`, fontWeight: 'bold' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {students.map(student => (
             <TableRow key={student.id}>
-              <TableCell>{student.name}</TableCell>
-              <TableCell>{student.gender}</TableCell>
-              <TableCell>{student.school}</TableCell>
-              <TableCell>
+              <TableCell style={{ border: `1px solid ${gray}` }}>{student.name}</TableCell>
+              <TableCell style={{ border: `1px solid ${gray}` }}>{student.gender}</TableCell>
+              <TableCell style={{ border: `1px solid ${gray}` }}>{student.school}</TableCell>
+              <TableCell style={{ border: `1px solid ${gray}` }}>
                 <Button variant="contained" component={Link} to={`/students/${student.id}`} style={{ marginRight: '8px' }}>
                   View
                 </Button>
-                <Button variant="contained" component={Link} to={`/students/edit/${student.id}`} style={{ marginRight: '8px' }}>
+                <Button variant="contained" component={Link} to={`/students/${student.id}/edit`} style={{ marginRight: '8px' }}>
                   Edit
                 </Button>
-                <Button variant="contained" component={Link} to={`/students/delete/${student.id}`} color="error">
+                <Button variant="contained" component={Link} to={`/students/${student.id}/delete`} color="error">
                   Delete
                 </Button>
               </TableCell>
@@ -73,3 +75,4 @@ function StudentsPage() {
 }
 
 export default StudentsPage;
+

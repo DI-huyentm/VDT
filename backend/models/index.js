@@ -1,78 +1,43 @@
-const { Sequelize, DataTypes, Model, QueryTypes, Op } = require("sequelize");
-const sequelize = new Sequelize("bookstore", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
-  port: 3306,
-});
+'use strict';
 
-// Connecting to MySQL Database
-const connectDB = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-};
-
-connectDB();
-
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const process = require('process');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
-db.Sequelize = Sequelize;
+
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (
+      file.indexOf('.') !== 0 &&
+      file !== basename &&
+      file.slice(-3) === '.js' &&
+      file.indexOf('.test.js') === -1
+    );
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
 db.sequelize = sequelize;
-db.QueryTypes = QueryTypes;
-db.Op = Op;
-
-// Include Models
-
-db.User = require("./userModel")(sequelize, DataTypes, Model);
-db.Book = require("./bookModel")(sequelize, DataTypes, Model);
-db.Sale = require("./saleModel")(sequelize, DataTypes, Model);
-db.SaleDetail = require("./saledetailModel")(sequelize, DataTypes, Model);
-db.Genre = require("./genreModel")(sequelize, DataTypes, Model);
-db.BookGenre = require("./bookgenreModel")(sequelize, DataTypes, Model);
-
-
-// // Define the relations between many models
-
-db.SaleDetail.belongsTo(db.Sale, {
-  foreignKey: "sale_id",
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
-
-db.SaleDetail.belongsTo(db.Book, {
-  foreignKey: "book_id",
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
-
-db.Sale.belongsTo(db.User, {
-  foreignKey: "user_id",
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
-
-db.BookGenre.belongsTo(db.Book, {
-  foreignKey: "book_id",
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
-
-db.BookGenre.belongsTo(db.Genre, {
-  foreignKey: "genre_id",
-  onDelete: "CASCADE",
-  onUpdate: "CASCADE",
-});
-
-db.Book.hasMany(db.BookGenre, {
-  foreignKey: "book_id",
-});
-
-db.Genre.hasMany(db.BookGenre, {
-  foreignKey: "genre_id",
-});
-
-db.sequelize.sync();
+db.Sequelize = Sequelize;
 
 module.exports = db;
